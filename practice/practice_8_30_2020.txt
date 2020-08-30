@@ -1,0 +1,4 @@
+1. Add the properties color, gender, and breed to the animal object
+2. Update __init__ to use these values
+3. Write an action called dyeAnimal() to change the color (imagine you have a cat and you want to dye its fur).
+    a. Use user input to set the color.
