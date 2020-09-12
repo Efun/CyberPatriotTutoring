@@ -1,0 +1,7 @@
+Animal class if statements
+
+1. write an if block that prints "wow" if an animal is a red panda 
+2. write an if block that prints "covid" if an animal is a bat
+3. write an if block that prints "what a cute puppy" if an animal is a dog and their age is less than 2
+
+hint: writing and in python is the same as writing and in english
