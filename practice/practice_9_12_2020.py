@@ -43,7 +43,7 @@ colorDye = input("What color do you want to dye it? \n")
 bobby.dyeAnimal(colorDye)
 
 
-joe = animal(420, 69, blue, "girl", "cat")
+joe = animal(420, 69, "blue", "girl", "cat")
 
 #boolean
 #if the cat is bigger than 100 inches it's pretty big
@@ -53,7 +53,7 @@ joe = animal(420, 69, blue, "girl", "cat")
 #bobby's size = bobby.size
 if joe.size >= 100: 
   #result
-  print("ok")
+  print("wow joe is so big!")
 
 joe.getOlder()
 
@@ -62,3 +62,30 @@ if joe.age >= 70:
   x = "do nothing"
   print("wow he's so old!")
   print("when was the last time you ate lunch")
+
+jake = animal(10, 10, "blue", "boy", "whale")
+
+#jake is of type animal
+#"red panda" is of type string
+
+if jake.breed == "red panda":
+    print("Wow")
+
+if jake.breed == "bat":
+    print("Covid")
+
+if jake.age < 2 and jake.breed == "dog":
+    print("what a cute puppy")
+
+
+if jake.age < 2:
+    if jake.breed == "dog":
+        print("what a cute puppy")
+
+
+
+#nesting
+if conditionA
+    if conditionB
+            #code a
+    #code b
