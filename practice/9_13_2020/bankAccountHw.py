@@ -41,16 +41,37 @@ class BankAccount:
 def main():
     #get userInput to make a new bank account
     #make a new bank account with your name and a password
-    ba = BankAccount("Ethan", "123", 1000000)
+  ba = BankAccount("Ethan", "123", 1000000)
+    
+  AskAccount = input("Do you have a login? \n")
 
-    #update withdraw and deposit so that not everybody can do that 
-    #HINT: if statements
+  if AskAccount == "yes": 
+    AskUserName = input("What is your username?")
+    AskPassword = input("What is your password?")
 
-    #use user input to do these things
-    #log in to your account and deposit x dollars 
-    #ask for a password
+    if AskPassword == ba.password and AskUserName == ba.userName: 
+            # balance = 0
 
-    #log out of your account
-    ba.logout()
+      amountadded = int(input("How much money do you want to deposit into your account? "))
+
+            # balance+=amountadded
+
+      ba.deposit(amountadded)
+
+      print("You have now have")
+      print(ba.balance) 
+      print("$ in your account")
+    
+    else: 
+      print("Wrong password.")
+             
+  else: 
+    userName = input("Create your username: ")
+    password = input("Create your password: ")
+
+    newba = BankAccount(userName, password, 0)
+    print(newba.userName + newba.password)
+
+
 
 main()
