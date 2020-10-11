@@ -46,6 +46,7 @@ class BankAccount:
 
 def linearSearchBankAccounts(bankAccountList, searchTerm):
     #TODO: Implement me!
+    pass #remove this when you are implementing!
 
 
 # create user input to add 3 bank accounts to a list
