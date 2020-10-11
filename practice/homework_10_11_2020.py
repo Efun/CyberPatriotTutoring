@@ -1,12 +1,9 @@
-# modify last week's homework, so that instead of just getting the third bank account,
-# we ask the user which bank account they want to log in to using linear search
 
-# expected functionality is:
-# ask for user to input 3 bank accounts (we already did this)
-# ask for user to input a user name
-# search for that user name in our list
-# if we find it, ask the user for a password, and try to log in
-# if we don't find it, then exit the program
+#modify last week's homework:
+#package linear search as a function
+#use this function to solve the problem of having multiple of the same username
+#This linear search should be applicable to any list of bank accounts
+
 
 # import the bank account class
 class BankAccount:
@@ -45,6 +42,10 @@ class BankAccount:
     # logout
     def logout(self):
         self.isLoggedIn = False
+
+
+def linearSearchBankAccounts(bankAccountList, searchTerm):
+    #TODO: Implement me!
 
 
 # create user input to add 3 bank accounts to a list
