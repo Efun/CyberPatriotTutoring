@@ -43,23 +43,57 @@ class BankAccount:
     def logout(self):
         self.isLoggedIn = False
 
+#this function returns true if we found a user name in the list and false if we did not find the user name in the list
+def isUserNameTaken(bankAccountList, searchTerm):
+    for x in bankAccountList:
+        #does the searchTerm match with x's username?
+        if searchTerm == x.userName:
+            #print("sorry this usernames taken")
+            return True
+    return False
 
-def linearSearchBankAccounts(bankAccountList, searchTerm):
-    #TODO: Implement me!
-    pass #remove this when you are implementing!
+
+
+
 
 
 # create user input to add 3 bank accounts to a list
 bankAccountList = []
 
-# append function
-for x in range(0, 3):
-    userName = input("Type in your username \n")
-    password = input("Type in your password \n")
-    balance = input("How much money do you have \n")
+#we can do an infinite amount of usernames, the user needs to input when to stop
+keepGoing = "yes"
 
-    newBankAccount = BankAccount(userName, password, balance)
-    bankAccountList.append(newBankAccount)
+# append function
+while True:
+    keepGoing = input("Do you want to create a new bank account? \n")
+
+    if keepGoing != "yes":
+        break
+
+    userName = input("Type in your username \n")
+    
+
+    #this will equal true or false based on our function's logic
+    #recalls function line 47 
+    
+    UserNameTaken = isUserNameTaken(bankAccountList, userName)
+
+    #what type is UserNameTaken?
+
+    if UserNameTaken:
+        print("sorry its taken")
+
+    else: 
+        print("congratulations you created a new username!!11! \n")
+        password = input("Type in your password \n")
+        balance = input("How much money do you have \n")
+        newBankAccount = BankAccount(userName, password, balance)
+        bankAccountList.append(newBankAccount)
+
+
+    #if the username is taken, print out sorry this username is taken
+
+ 
 
 
 # for x in bankAccountList:
@@ -67,21 +101,41 @@ for x in range(0, 3):
 
 # log in to the third account in the list
 
-requestBankAccountUserName = input(
-    "Which bank account do you want to log into?")
+requestBankAccountUserName = input("Which bank account do you want to log into? \n")
 
+
+numBankAccount = len(bankAccountList)
+iterations = 0
 for x in bankAccountList:
     # x = bankAccountList[0]
     # x = bankAccountList[1]...
+    
     if requestBankAccountUserName == x.userName:
-        password = input("Type the password for account " + str(x.userName))
-        x.login(password)
-    if x.isLoggedIn == True:
-        print("Success!")
-        break
-    elif x.isLoggedIn == False and requestBankAccountUserName == x.userName:
-        print("Failure")
+        tries = 3
+        
+        while tries > 0:
+            password = input("Type the password for account " + str(x.userName))
+            x.login(password)
+            if x.isLoggedIn == True:
+                print("Success!")
+                break
+            elif x.isLoggedIn == False and requestBankAccountUserName == x.userName:
+                tries -= 1
+                print("Failure, try again you have " + str(tries) + " more tries left. \n") # with this print statement, also print out how many tries we have left
 
+        #if we did not log in successfully
+        if x.isLoggedIn == False:
+            print("bye cy@")
+            break
+
+    if iterations == numBankAccount - 1 and (x.isLoggedIn == False):
+        print("We couldn't find the account")
+
+    iterations += 1
+
+#we should have a certain number of attempts and say how many are remaining before exiting the program
+
+#number of tries?
 
 # for an action we need parentheses and parameters
 # for a property we only need the property name
