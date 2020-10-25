@@ -1,17 +1,18 @@
-from hat import hat
+from hat import hat as hatType
 
-class player: 
+
+class player:
     #properties
-    isImposter = False 
+    isImposter = False
     color = ""
-    hats = None
+    hat = None
     userName = ""
-    
+
     #actions
     def __init__(self, userName, color):
         self.userName = str(userName)
         self.color = str(color)
-        
+
     #getters and setters
     def getColor(self):
         return self.color
@@ -31,13 +32,11 @@ class player:
         else:
             print("That's not a boolean!")
 
-    def getHats(self): 
-        return self.hats
+    def getHat(self):
+        return self.hat
 
-    def setHats(self):
-        if (type(hats) is hat):
-            self.hats = hats
+    def setHat(self, hat):
+        if (type(hat) is hatType):
+            self.hat = hat
         else:
             print("no")
-
-    
