@@ -90,26 +90,38 @@ def main():
     #make sure that the number of imposters is between 1 and 3 (inclusive)
     #it should be above the while loop
 
-    while !(1 <= int(numImposters) and int(numImposters) <= 3):
+    numImposters = input("How many imposters? \n")
+
+    while not(1 <= int(numImposters) and int(numImposters) <= 3):
         print("Try again. That's not a valid number of imposters, there can be a min of 1 and a max of 3")
 
         numImposters = input("How many imposters? \n")
-    
-        
-   
         #how do we ask them again until their input is correct?
         #we definitely want a loop
 
     if 1 <= int(numImposters) and int(numImposters) <= 3:
         print("cool!")
-    
-    #pick a random player from the list and then assign it to a variable
-    randomNumber = random.randint(0, len(players) - 1)
-    randomPlayer = players[randomNumber]
-    print(randomPlayer.userName)
+        print("We have " + numImposters + " imposters")
 
-    randomPlayer.setIsImposter(True)
-    print(str(randomPlayer.getIsImposter()))
+    #execute something a certain number of times == numImposters
+    for x in range(0, int(numImposters)):
+        #pick a random player from the list and then assign it to a variable
+        
+        #ask if the random player is already an imposter or not?
+        randomNumber = random.randint(0, len(players) - 1)
+        randomPlayer = players[randomNumber]
+        
+        #this is not a valid index, since this person is already an imposter
+        while randomPlayer.getIsImposter() == True:
+            randomNumber = random.randint(0, len(players) - 1)
+            randomPlayer = players[randomNumber]
+
+        #dicts json tomorrow
+        
+        print(randomPlayer.userName)
+
+        randomPlayer.setIsImposter(True)
+        print(str(randomPlayer.getIsImposter()))
     
 
 
