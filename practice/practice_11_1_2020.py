@@ -56,106 +56,133 @@ person = {
     "age": 21
 }
 
-person2 = {
-    "name": "person2",
-    "age": 22,
-    "interalDict": {
-        "random": "internalDictRandom"
-    } 
+#declarations
+#[] for list
+#() for tuple
+#{} for dicts
+
+#access
+#class access uses .
+#list/tuple/dict access uses []
+
+#{"key": value}
+newDict = {
+    "a": "hello world",
+    "b": "potato"
 }
+print(str(newDict["a"]))
+print(str(newDict["b"]))
+
+newDict["a"] = "hello potato"
+print(newDict["a"])
+
+newDict["c"] = "potato potato"
+print(newDict["c"])
+
+#write a new dict with an element with key "a" and value "hello world"
+
+# print(str(newDict["a"]))
+
+# person2 = {
+#     "name": "person2",
+#     "age": 22,
+#     "interalDict": {
+#         "random": "internalDictRandom"
+#     } 
+# }
 
 
 
-var = Person()
-#access in a class is done with .
-print(var.name)
+# var = Person()
+# #access in a class is done with .
+# print(var.name)
 
-#access in a dict is done with []
-print(person["name"])
+# #access in a dict is done with []
+# print(person["name"])
 
-#you can add things to the dict
-person["gender"] = "female"
+# #you can add things to the dict
+# person["gender"] = "female"
 
-#this is bad practice but it works
-var.gender = "female"
+# #this is bad practice but it works
+# var.gender = "female"
 
-#remove things from the dict
-person.pop("age")
-
-
-# print(person)
-# print(person2)
-
-listOfDicts = []
-listOfDicts.append(person)
-listOfDicts.append(person2)
-
-for x in listOfDicts:
-    print(x)
-
-#make a dict that replicates our player class in among us
+# #remove things from the dict
+# person.pop("age")
 
 
+# # print(person)
+# # print(person2)
 
-playerDict = {
-    "isImposter": False,
-    "color": "Blue",
-    "hat": None, 
-    "userName": "test", 
-}
+# listOfDicts = []
+# listOfDicts.append(person)
+# listOfDicts.append(person2)
 
-playerJsonString = '{"isImposter": "False", "color": "Blue", "hat": "None", "userName": "test"}'
-playerJsonToDict = json.loads(playerJsonString)
+# for x in listOfDicts:
+#     print(x)
 
-print("JSON")
-print(playerJsonString)
-
-print("Converted dict")
-print(playerJsonToDict)
-
-print("Our Dict")
-print(playerDict)
-
-print(str(playerDict["isImposter"] == playerJsonToDict["isImposter"]))
-
-#json - java script object notation
-#the reason for json and dicts is to pass information between people in a structured way
-mineCraftPlayerDict = {
-    "userName": ""
-}
-
-#aUPlayer = player(mineCraftPlayerDict["userName"])
-
-#if i made a java object and i wanted to send it over to python
-#i convert the java object into json
-#json turns into a string
-#python can consume that string and then convert it back to a dict/class
-#provide a universal format for objects between any language
-
-#things you can do with json/dicts
+# #make a dict that replicates our player class in among us
 
 
-#serializing
-#we convert from a python dict/object to json
-convertPlayerFromDictToJson = json.dumps(playerDict)
-print(convertPlayerFromDictToJson)
 
-#in json, object type None -> null and Booleans convert to lower case
+# playerDict = {
+#     "isImposter": False,
+#     "color": "Blue",
+#     "hat": None, 
+#     "userName": "test", 
+# }
+
+# playerJsonString = '{"isImposter": "False", "color": "Blue", "hat": "None", "userName": "test"}'
+# playerJsonToDict = json.loads(playerJsonString)
+
+# print("JSON")
+# print(playerJsonString)
+
+# print("Converted dict")
+# print(playerJsonToDict)
+
+# print("Our Dict")
+# print(playerDict)
+
+# print(str(playerDict["isImposter"] == playerJsonToDict["isImposter"]))
+
+# #json - java script object notation
+# #the reason for json and dicts is to pass information between people in a structured way
+# mineCraftPlayerDict = {
+#     "userName": ""
+# }
+
+# #aUPlayer = player(mineCraftPlayerDict["userName"])
+
+# #if i made a java object and i wanted to send it over to python
+# #i convert the java object into json
+# #json turns into a string
+# #python can consume that string and then convert it back to a dict/class
+# #provide a universal format for objects between any language
+
+# #things you can do with json/dicts
 
 
-#deserializing
-#we convert from json string to a python dict
-print(json.loads(convertPlayerFromDictToJson))
+# #serializing
+# #we convert from a python dict/object to json
+# convertPlayerFromDictToJson = json.dumps(playerDict)
+# print(convertPlayerFromDictToJson)
 
-#parsing
-#we read a dict/json and convert it to an object
-convertedPlayer = player(playerDict["userName"], playerDict["color"])
-print(convertedPlayer.userName)
-print(convertedPlayer.color)
-convertedPlayer.setIsImposter(playerDict["isImposter"])
-#convertedPlayer.setHat(playerDict["hat"])
+# #in json, object type None -> null and Booleans convert to lower case
 
 
-#for next lesson
-#think about the voting system
-#(we may not get to) think about converting our player input to text and json
+# #deserializing
+# #we convert from json string to a python dict
+# print(json.loads(convertPlayerFromDictToJson))
+
+# #parsing
+# #we read a dict/json and convert it to an object
+# convertedPlayer = player(playerDict["userName"], playerDict["color"])
+# print(convertedPlayer.userName)
+# print(convertedPlayer.color)
+# convertedPlayer.setIsImposter(playerDict["isImposter"])
+# #convertedPlayer.setHat(playerDict["hat"])
+
+
+# #for next lesson
+# #think about the voting system
+# #(we may not get to) think about converting our player input to text and json

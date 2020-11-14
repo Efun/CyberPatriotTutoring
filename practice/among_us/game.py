@@ -148,19 +148,37 @@ def main():
     #construct a bunch of tuples of each user name in the player list and the number 0
     voteCountList = []
 
+
+    #instead of doing this as tuples, change it to a dict instead.
+    #start
     for x in players:
         string1 = x.userName
         count = 0
 
         strtuple = (string1, count) 
-        voteCountList.append(strtuple) 
+        voteCountList.append(strtuple)
+    #end
+
+    for x in voteCountList:
+        print(x) 
 
 
     for x in voteList:
+        print(x[1])
+        for y in voteCountList:
+            if y[0] == x[1]:
+                y[1] += 1 
+    
+    for x in voteCountList:
         print(x)
     
     for x in players:
         print(x.userName + " " + str(x.getIsImposter()))
+
+    #this is what our list of tuples looks like
+    #('ethan', 'ethan')
+    #('hanna', 'ethan')
+    #('lina' , 'ethan')
     
     
 
