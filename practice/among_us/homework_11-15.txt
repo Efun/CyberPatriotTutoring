@@ -1,0 +1,6 @@
+Think about these questions.
+
+#in the case of a tie, nothing happens
+#if nobody votes, nothing happens
+#we need to be able to handle a vote that is not in the list
+#we probably have to ask again

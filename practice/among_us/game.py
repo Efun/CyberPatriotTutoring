@@ -23,48 +23,48 @@ def getPlayers():
     players = []
     keepGoing = "yes"
     
-    while True:
-        keepGoing = input("Do you want to add a new player? \n")
+    # while True:
+    #     keepGoing = input("Do you want to add a new player? \n")
 
-        if keepGoing != "yes":
-            break
+    #     if keepGoing != "yes":
+    #         break
 
-        userName = input("Type in your username \n")
-        UserNameTaken = isUserNameTaken(players, userName)
+    #     userName = input("Type in your username \n")
+    #     UserNameTaken = isUserNameTaken(players, userName)
 
-        #what type is UserNameTaken?
+    #     #what type is UserNameTaken?
 
-        if UserNameTaken:
-            print("sorry its taken")
+    #     if UserNameTaken:
+    #         print("sorry its taken")
 
-        else:
-            print("congratulations you created a new username!!11! \n")
-            color = input("Which color would you like to be? ")
-            newPlayer = player(userName, color)
+    #     else:
+    #         print("congratulations you created a new username!!11! \n")
+    #         color = input("Which color would you like to be? ")
+    #         newPlayer = player(userName, color)
 
-            #we want the newPlayer's userName
-            hatColor = input("What color does " + newPlayer.userName + " want your hat to be?" )
-            hatStyle = input("What style does " + newPlayer.userName + " want your style to be? ")
+    #         #we want the newPlayer's userName
+    #         hatColor = input("What color does " + newPlayer.userName + " want your hat to be?" )
+    #         hatStyle = input("What style does " + newPlayer.userName + " want your style to be? ")
 
-            newHat = hat(hatColor, hatStyle)
+    #         newHat = hat(hatColor, hatStyle)
 
-            newPlayer.setHat(newHat)
-            players.append(newPlayer)
+    #         newPlayer.setHat(newHat)
+    #         players.append(newPlayer)
 
     #write a for loop that makes 10 players with user name 0-9 and color blue
 
     #randint(start, stop) inclusive of start and stop
     #range(start, stop) inclusive of start but exclusive of stop
 
-    # for x in range(0, 10):
-    #     userName = str(x) 
-    #     color = "blue"
-    #     hatColor = "blue"
-    #     hatStyle = "birthday"
-    #     newPlayer = player(userName, color)
-    #     newHat = hat(hatColor, hatStyle)
-    #     newPlayer.setHat(newHat)
-    #     players.append(newPlayer)
+    for x in range(0, 3):
+        userName = "user " + str(x) 
+        color = "blue"
+        hatColor = "blue"
+        hatStyle = "birthday"
+        newPlayer = player(userName, color)
+        newHat = hat(hatColor, hatStyle)
+        newPlayer.setHat(newHat)
+        players.append(newPlayer)
 
 
 
@@ -104,6 +104,43 @@ def getImposters(players):
         randomPlayer.setIsImposter(True)
         #print(str(randomPlayer.getIsImposter()))
 
+def getVotes(players):
+    #how should we ask each player for their vote?: we're going to ask 2 questions:
+    #Do you want to vote?
+    #if yes then cast your vote
+    #if no then move on to the next player
+
+    voteList = []
+    
+    for x in players: 
+        askVote = input(x.userName + ", do you want to vote? \n") 
+        if askVote == ("yes"):
+            #then we get their vote
+            
+            votePlayer = input(x.userName + ", who do you want to vote for? \n")
+            #then move on
+        
+            strTuple = (x.userName, votePlayer)
+            voteList.append(strTuple)
+
+    voteCountDict = {}
+
+    #instead of doing this as tuples, change it to a dict instead.
+    #start
+    for x in players:
+        #how do we make a key value pair of user name and value = 0
+        # something["b"] = 12
+        voteCountDict[x.userName] = 0
+
+    for x in voteList:
+        #@hanna how do we increment "user 0"'s value?
+
+        #explain to me in english exactly what is happening on this line
+        voteCountDict[x[1]] += 1
+
+    print(voteCountDict)
+    return voteCountDict
+
 
 
 def main():
@@ -112,73 +149,25 @@ def main():
 
     getImposters(players)
 
+    voteCountDict = getVotes(players)
+
+    #in the case of a tie, nothing happens
+    #if nobody votes, nothing happens
+    #we need to be able to handle a vote that is not in the list
+    #we probably have to ask again
+    #we need to have some way to keep track when iterating through our dict
+
     #we can either vote or not vote
     #whoever has the most votes gets kicked off
     
-
-    #how should we ask each player for their vote?: we're going to ask 2 questions:
-    #Do you want to vote?
-    #if yes then cast your vote
-    #if no then move on to the next player
-    
-    voteList = []
-    
-
-    for x in players: 
-        askVote = input(x.userName + ", do you want to vote?") 
-        if askVote == ("yes"):
-            #then we get their vote
-            
-            votePlayer = input(x.userName + "Who do you want to vote for?")
-            #then move on
-        
-            strTuple = (x.userName, votePlayer)
-            voteList.append(strTuple)
-
-    #write a list and a variable for a tuple of user name and vote count
-
-    #write a list of tuples of string and int
-    string1 = "hello"
-    number1 = 0
-    strIntList = []
-
-    strgiujiju = (string1, number1)
-    strIntList.append(strgiujiju)
-
-    #construct a bunch of tuples of each user name in the player list and the number 0
-    voteCountList = []
-
-
-    #instead of doing this as tuples, change it to a dict instead.
-    #start
-    for x in players:
-        string1 = x.userName
-        count = 0
-
-        strtuple = (string1, count) 
-        voteCountList.append(strtuple)
-    #end
-
-    for x in voteCountList:
-        print(x) 
-
-
-    for x in voteList:
-        print(x[1])
-        for y in voteCountList:
-            if y[0] == x[1]:
-                y[1] += 1 
-    
-    for x in voteCountList:
-        print(x)
     
     for x in players:
         print(x.userName + " " + str(x.getIsImposter()))
 
-    #this is what our list of tuples looks like
-    #('ethan', 'ethan')
-    #('hanna', 'ethan')
-    #('lina' , 'ethan')
+    #find the max
+
+    #we set some initial value that's really small
+    #every time we find a value greater than it, we update that really small value to be that greater value instead
     
     
 
