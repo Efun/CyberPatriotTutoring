@@ -137,7 +137,10 @@ def getVotes(players):
 
         #explain to me in english exactly what is happening on this line
         voteCountDict[x[1]] += 1
-
+    #voteCountDict has {
+    #   'userName': numVotes
+    #   'userName2': numVotes
+    # }
     print(voteCountDict)
     return voteCountDict
 
@@ -150,6 +153,28 @@ def main():
     getImposters(players)
 
     voteCountDict = getVotes(players)
+
+    #how do we search voteCountDict for the maximum value?
+    maximum = -1000000
+    playerName = ""
+    #right here is the first line
+    for x in voteCountDict.items():
+        if x[1] > maximum:
+            maximum = x[1]
+            playerName = x[0] 
+            #right here is the second line
+            
+    print(playerName)
+
+    #we need to save the x that contains the maximum number of votes so that we can use [0] to access the username
+    #you need 2 lines of code to make this work
+
+
+    [
+        ('user 0', 0),
+        ('user 1', 3),
+        ('user 2', 0)
+    ]
 
     #in the case of a tie, nothing happens
     #if nobody votes, nothing happens
