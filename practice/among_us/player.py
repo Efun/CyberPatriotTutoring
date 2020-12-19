@@ -46,9 +46,3 @@ class player:
         self.isAlive = False 
     #define an action for killing a player
     
-            print("no")
-
-    def murder(self): 
-        self.isAlive = False 
-    #define an action for killing a player
-    

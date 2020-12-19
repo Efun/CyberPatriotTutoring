@@ -144,6 +144,34 @@ def getVotes(players):
     print(voteCountDict)
     return voteCountDict
 
+def maximumValue(voteCountDict): 
+    maximum = -1000000
+    maximumPlayerName = ""
+    #right here is the first line
+    for x in voteCountDict.items():
+        if x[1] > maximum:
+            maximum = x[1]
+            maximumPlayerName = x[0] 
+            #right here is the second line
+    
+    #return None if there is a tie
+    #return the maximumPlayerName if there is not a tie
+    if tie(voteCountDict, maximum, maximumPlayerName):
+        return None 
+    else: 
+        return(maximumPlayerName)
+
+#question here is was there a tie or not?
+#return True
+#return False
+def tie(voteCountDict, maximum, maximumPlayerName):
+    for x in voteCountDict.items(): 
+        if maximum == x[1]: 
+            #we want to check that the current x's fruit name is not equal to the max fruit before we print
+            if x[0] != maximumPlayerName:
+                print("It's a tie")
+                return (True)
+    return (False)
 
 
 def main():
@@ -154,40 +182,17 @@ def main():
 
     voteCountDict = getVotes(players)
 
+    votedOutPlayer = maximumValue(voteCountDict)
     #how do we search voteCountDict for the maximum value?
-    maximum = -1000000
-    playerName = ""
-    #right here is the first line
-    for x in voteCountDict.items():
-        if x[1] > maximum:
-            maximum = x[1]
-            playerName = x[0] 
-            #right here is the second line
-            
-    print(playerName)
-    
-    for x in voteCountDict.items():
-        if maximum == x[1]: 
-            #we want to check that the current x's fruit name is not equal to the max fruit before we print
-            if x[0] != playerName:
-                print("It's a tie")
-                break
-
-    #we need to save the x that contains the maximum number of votes so that we can use [0] to access the username
-    #you need 2 lines of code to make this work
-
-    #in the case of a tie, nothing happens
-    #if nobody votes, nothing happens
-    #we need to be able to handle a vote that is not in the list
-    #we probably have to ask again
-    #we need to have some way to keep track when iterating through our dict
-
-    #we can either vote or not vote
-    #whoever has the most votes gets kicked off
-    
+   
+    #we're trying to find the player whose username is equal to voted out player (and kill them)
+    print(votedOutPlayer)
+    for x in players:
+        if x.userName == votedOutPlayer: 
+            x.murder() 
     
     for x in players:
-        print(x.userName + " " + str(x.getIsImposter()))
+        print(x.userName + " " + str(x.getIsImposter()) + " alive?" + str(x.isAlive))
 
     #find the max
 
