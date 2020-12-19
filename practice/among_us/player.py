@@ -7,6 +7,7 @@ class player:
     color = ""
     hat = None
     userName = ""
+    isAlive = True 
 
     #actions
     def __init__(self, userName, color):
@@ -40,3 +41,14 @@ class player:
             self.hat = hat
         else:
             print("no")
+
+    def murder(self): 
+        self.isAlive = False 
+    #define an action for killing a player
+    
+            print("no")
+
+    def murder(self): 
+        self.isAlive = False 
+    #define an action for killing a player
+    

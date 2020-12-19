@@ -165,16 +165,16 @@ def main():
             #right here is the second line
             
     print(playerName)
+    
+    for x in voteCountDict.items():
+        if maximum == x[1]: 
+            #we want to check that the current x's fruit name is not equal to the max fruit before we print
+            if x[0] != playerName:
+                print("It's a tie")
+                break
 
     #we need to save the x that contains the maximum number of votes so that we can use [0] to access the username
     #you need 2 lines of code to make this work
-
-
-    [
-        ('user 0', 0),
-        ('user 1', 3),
-        ('user 2', 0)
-    ]
 
     #in the case of a tie, nothing happens
     #if nobody votes, nothing happens
@@ -194,8 +194,6 @@ def main():
     #we set some initial value that's really small
     #every time we find a value greater than it, we update that really small value to be that greater value instead
     
-    
-
     
 
     
