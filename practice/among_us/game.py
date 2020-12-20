@@ -189,8 +189,32 @@ def main():
     print(votedOutPlayer)
     for x in players:
         if x.userName == votedOutPlayer: 
-            x.murder() 
+            x.murder()
+
+    #getIsImposter()
+    #input statement to ask these people a question\
+    #save that as a variable
+    #we just run the murder() command
+
+
+    #loop through all of the players to see who is an imposter
+    for x in players:
+        if x.getIsImposter():
+            #our output right now: 
+            #   user 0 Is imposter: true/false Is alive: true/false
+            #   1.) user 0 Is imposter: t/f Is alive: t/f 
+            #also there's a bug in this for loop, what is it?
+            print(x.userName + "you are an imposter: ")
+            
+            integerVariable = 1
+
+            for y in players:
+                print(str(integerVariable) + ". " + y.userName + " " + "Is imposter: " + str(y.getIsImposter()) + " Is alive: " + str(y.isAlive))
+                integerVariable += 1
     
+            playerToKill = input("Who do you want to kill? ")
+            players[int(playerToKill) - 1].murder()
+            
     for x in players:
         print(x.userName + " " + str(x.getIsImposter()) + " alive?" + str(x.isAlive))
 
