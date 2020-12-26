@@ -6,6 +6,7 @@ import random
 # print(player.userName + " " + player.color)
 
 
+
 def isUserNameTaken(players, searchTerm):
     for x in players:
         #does the searchTerm match with x's username?
@@ -112,7 +113,10 @@ def getVotes(players):
 
     voteList = []
     
-    for x in players: 
+    for x in players:
+        #put something here to make sure that we don't ask dead players to vote.
+        #if *** 
+        #it's an if statement! (what's our condition for the if statement?)
         askVote = input(x.userName + ", do you want to vote? \n") 
         if askVote == ("yes"):
             #then we get their vote
@@ -173,30 +177,7 @@ def tie(voteCountDict, maximum, maximumPlayerName):
                 return (True)
     return (False)
 
-
-def main():
-    #list of players
-    players = getPlayers()
-
-    getImposters(players)
-
-    voteCountDict = getVotes(players)
-
-    votedOutPlayer = maximumValue(voteCountDict)
-    #how do we search voteCountDict for the maximum value?
-   
-    #we're trying to find the player whose username is equal to voted out player (and kill them)
-    print(votedOutPlayer)
-    for x in players:
-        if x.userName == votedOutPlayer: 
-            x.murder()
-
-    #getIsImposter()
-    #input statement to ask these people a question\
-    #save that as a variable
-    #we just run the murder() command
-
-
+def hitlist(players): 
     #loop through all of the players to see who is an imposter
     for x in players:
         if x.getIsImposter():
@@ -204,7 +185,7 @@ def main():
             #   user 0 Is imposter: true/false Is alive: true/false
             #   1.) user 0 Is imposter: t/f Is alive: t/f 
             #also there's a bug in this for loop, what is it?
-            print(x.userName + "you are an imposter: ")
+            print(x.userName + " you are an imposter: ")
             
             integerVariable = 1
 
@@ -214,9 +195,40 @@ def main():
     
             playerToKill = input("Who do you want to kill? ")
             players[int(playerToKill) - 1].murder()
-            
+
+def voteOut(players, votedOutPlayer): 
+    print(votedOutPlayer)
     for x in players:
-        print(x.userName + " " + str(x.getIsImposter()) + " alive?" + str(x.isAlive))
+        if x.userName == votedOutPlayer: 
+            x.murder()
+
+def main():
+    #list of players
+    players = getPlayers()
+
+    getImposters(players)
+    #how do we search voteCountDict for the maximum value?
+   
+    #we're trying to find the player whose username is equal to voted out player (and kill them)
+    
+
+
+    #getIsImposter()
+    #input statement to ask these people a question\
+    #save that as a variable
+    #we just run the murder() command
+
+
+    hitlist(players)
+    
+    voteCountDict = getVotes(players)
+
+    votedOutPlayer = maximumValue(voteCountDict)
+
+    voteOut(players, votedOutPlayer)
+    
+    for x in players:
+        print(x.userName + " " + str(x.getIsImposter()) + " alive: " + str(x.isAlive))
 
     #find the max
 
