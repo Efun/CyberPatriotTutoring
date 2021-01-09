@@ -208,30 +208,48 @@ def voteOut(players, votedOutPlayer):
         if x.userName == votedOutPlayer: 
             x.murder()
 
+#players win should return true if and only if all of the imposters are dead
+def playersWin(players): 
+    #go through the players list and print out their name if they are an impostor
+
+    
+    for x in players:
+        if x.isImposter: 
+            print(x.username)      
+            if x.isAlive: 
+                return False 
+                #what would be the value of x.isImposter and x.isAlive if we get here
+                #x.isImposter: True
+                #x.isAlive: True
+    return True
+    #the players win when all of the impostors are dead
+    #if there is a single impostor alive, the players have not won yet
+    #if we are inside both of these if statements, then there is an impostor that is alive, therefore the players have not won
+    #and we return false
+
+
 def main():
-    #list of players
+    #where do we put the while True:?
+
     players = getPlayers()
-
     getImposters(players)
-    #how do we search voteCountDict for the maximum value?
-   
-    #we're trying to find the player whose username is equal to voted out player (and kill them)
     
 
+    #we stop this loop when someone wins the game
+    #how do the players win the game: all of the impostors have to be dead
+    #how do the impostors win the game: number of players <= number of impostors
+    #i want a boolean variable that tells me whether all of the impostors are dead or not
 
-    #getIsImposter()
-    #input statement to ask these people a question\
-    #save that as a variable
-    #we just run the murder() command
+    while True:
+        if playersWin():
+            pass
+        if impostersWin():
+            pass
 
-
-    hitlist(players)
-    
-    voteCountDict = getVotes(players)
-
-    votedOutPlayer = maximumValue(voteCountDict)
-
-    voteOut(players, votedOutPlayer)
+        hitlist(players)
+        voteCountDict = getVotes(players)
+        votedOutPlayer = maximumValue(voteCountDict)
+        voteOut(players, votedOutPlayer)
     
     for x in players:
         print(x.userName + " " + str(x.getIsImposter()) + " alive: " + str(x.isAlive))
