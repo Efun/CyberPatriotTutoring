@@ -117,15 +117,19 @@ def getVotes(players):
         #put something here to make sure that we don't ask dead players to vote.
         #if *** 
         #it's an if statement! (what's our condition for the if statement?)
-        askVote = input(x.userName + ", do you want to vote? \n") 
-        if askVote == ("yes"):
+        #if players are alive, ask if they want to vote
+
+        if x.isAlive: 
+            askVote = input(x.userName + ", do you want to vote? \n") 
+
+            if askVote == ("yes"):
             #then we get their vote
             
-            votePlayer = input(x.userName + ", who do you want to vote for? \n")
-            #then move on
-        
-            strTuple = (x.userName, votePlayer)
-            voteList.append(strTuple)
+                votePlayer = input(x.userName + ", who do you want to vote for? \n")
+                #then move on
+            
+                strTuple = (x.userName, votePlayer)
+                voteList.append(strTuple)
 
     voteCountDict = {}
 
@@ -136,6 +140,8 @@ def getVotes(players):
         # something["b"] = 12
         voteCountDict[x.userName] = 0
 
+
+    #we have 10 players and only 4 are alive, does our program break if we only have 4 votes in our voteList
     for x in voteList:
         #@hanna how do we increment "user 0"'s value?
 
@@ -248,7 +254,29 @@ def main():
 
 # tupList.append(strTuple) 
 
-    
 
+#victory conditions?
+
+#how do the players win?
+#when they kill off all of the imposters
+#when they complete all their tasks (although we don't have those at the moment)
+
+
+#how do the imposters win?
+#if there are less players than impostors
+#1 player left with any number of impostors is a win for the impostors
+#even number of players and impostors is a loss for the players
+#number of players less than impostors is also a loss for the players
+
+#victory for impostors is: number of players <= number of impostors
+#victory for players is: all impostors dead
+
+#how do we make a cycle of killing and voting?
+#how do we know how to stop the cycle?
+#we want to keep killing and voting until one of our win conditions is met
+
+#this is a while loop!
+#what's going to be the condition or the thing that stops the while loop?
+#our stoppers for the while loop are just going to be our victory conditions!
 
 main()
