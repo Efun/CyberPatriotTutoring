@@ -1,0 +1,2 @@
+1. you need to change one of the if statements you just wrote to an elif
+2. there are two missing purple words in those if statements

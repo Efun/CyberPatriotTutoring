@@ -57,7 +57,7 @@ def getPlayers():
     #randint(start, stop) inclusive of start and stop
     #range(start, stop) inclusive of start but exclusive of stop
 
-    for x in range(0, 3):
+    for x in range(0, 5):
         userName = "user " + str(x) 
         color = "blue"
         hatColor = "blue"
@@ -73,6 +73,7 @@ def getPlayers():
     
 def getImposters(players):
     numImposters = input("How many imposters? \n")
+
 
     while not(1 <= int(numImposters) and int(numImposters) <= 3):
         print("Try again. That's not a valid number of imposters, there can be a min of 1 and a max of 3")
@@ -104,6 +105,8 @@ def getImposters(players):
 
         randomPlayer.setIsImposter(True)
         #print(str(randomPlayer.getIsImposter()))
+
+    return numImposters
 
 def getVotes(players):
     #how should we ask each player for their vote?: we're going to ask 2 questions:
@@ -198,9 +201,25 @@ def hitlist(players):
             for y in players:
                 print(str(integerVariable) + ". " + y.userName + " " + "Is imposter: " + str(y.getIsImposter()) + " Is alive: " + str(y.isAlive))
                 integerVariable += 1
-    
-            playerToKill = input("Who do you want to kill? ")
-            players[int(playerToKill) - 1].murder()
+
+            
+            imposterResponse = input("Do you want to kill? (yes/no)")
+
+            #2 cases: imposters cannot kill imposters, and imposters cannot kill people that are already dead
+            if imposterResponse == "yes":
+                playerToKill = input("Who do you want to kill? ")
+
+                while True:
+                    if (not players[int(playerToKill) - 1].isImposter) and (players[int(playerToKill)-1].isAlive):
+                        players[int(playerToKill) - 1].murder()
+                        break
+
+                    else:
+                        print("please try again")
+                        playerToKill = input("Who do you want to kill? ")
+
+                
+                
 
 def voteOut(players, votedOutPlayer): 
     print(votedOutPlayer)
@@ -209,15 +228,22 @@ def voteOut(players, votedOutPlayer):
             x.murder()
 
 #players win should return true if and only if all of the imposters are dead
-def playersWin(players): 
+def playersWin(players, numImposters): 
     #go through the players list and print out their name if they are an impostor
 
+    # [player, player, impostor, player, impostor, player, player]
     
+    imposterCount = 0    
+
     for x in players:
         if x.isImposter: 
-            print(x.username)      
+            imposterCount += 1     
             if x.isAlive: 
                 return False 
+            if imposterCount == numImposters: 
+                break 
+
+
                 #what would be the value of x.isImposter and x.isAlive if we get here
                 #x.isImposter: True
                 #x.isAlive: True
@@ -227,12 +253,28 @@ def playersWin(players):
     #if we are inside both of these if statements, then there is an impostor that is alive, therefore the players have not won
     #and we return false
 
+def impostersWin(players): 
+    imposterCount = 0
+    crewmateCount = 0 
+    
+    for x in players: 
+        if x.isAlive: 
+            if x.isImposter: 
+                imposterCount += 1 
+            else:
+                crewmateCount += 1
+    #>, <, ==, <=, >=, !=
+    if imposterCount >= crewmateCount: 
+        return True
+    else: 
+        return False
+
 
 def main():
     #where do we put the while True:?
 
     players = getPlayers()
-    getImposters(players)
+    numImposters = getImposters(players) 
     
 
     #we stop this loop when someone wins the game
@@ -241,10 +283,13 @@ def main():
     #i want a boolean variable that tells me whether all of the impostors are dead or not
 
     while True:
-        if playersWin():
-            pass
-        if impostersWin():
-            pass
+        if playersWin(players, numImposters):
+            print("Congratulations crewmates win!")
+            break 
+        if impostersWin(players):
+            print("Congratulations imposters win!")
+            break 
+            
 
         hitlist(players)
         voteCountDict = getVotes(players)

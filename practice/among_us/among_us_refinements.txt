@@ -1,0 +1,4 @@
+1. Make it so that imposters can choose to not kill someone
+2. Change player voting to be like imposter killing
+3. Make it so that imposters cannot kill themselves
+4. Edge case testing
