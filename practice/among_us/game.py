@@ -127,12 +127,30 @@ def getVotes(players):
 
             if askVote == ("yes"):
             #then we get their vote
-            
+                integerVariable = 1
+                
+                for y in players:
+                    print(str(integerVariable) + ". " + y.userName + " Is alive: " + str(y.isAlive))
+                    integerVariable += 1
+
                 votePlayer = input(x.userName + ", who do you want to vote for? \n")
                 #then move on
-            
-                strTuple = (x.userName, votePlayer)
-                voteList.append(strTuple)
+        
+                
+                    
+                while True:
+                    #check for whether the selected person is a crewmate and they are alive
+                    if (players[int(votePlayer) - 1].isAlive):
+                        strTuple = (x.userName, players[int(votePlayer) - 1].userName)
+                        voteList.append(strTuple)
+                        break
+
+                    else:
+                        print("please try again")
+                        votePlayer = input(x.userName + ", who do you want to vote for? ")
+
+    print("Our vote list looks like this: ")
+    print(voteList)
 
     voteCountDict = {}
 
@@ -156,6 +174,8 @@ def getVotes(players):
     # }
     print(voteCountDict)
     return voteCountDict
+#randomdict["key"] outputs "value"
+
 
 def maximumValue(voteCountDict): 
     maximum = -1000000
@@ -210,6 +230,7 @@ def hitlist(players):
                 playerToKill = input("Who do you want to kill? ")
 
                 while True:
+                    #check for whether the selected person is a crewmate and they are alive
                     if (not players[int(playerToKill) - 1].isImposter) and (players[int(playerToKill)-1].isAlive):
                         players[int(playerToKill) - 1].murder()
                         break
