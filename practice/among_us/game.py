@@ -225,9 +225,22 @@ def hitlist(players):
             
             imposterResponse = input("Do you want to kill? (yes/no)")
 
+            
+
             #2 cases: imposters cannot kill imposters, and imposters cannot kill people that are already dead
+            while not (imposterResponse == "yes" or imposterResponse == "no"):
+            
+            #not a or b = not a and not b
+
+            while imposterResponse != "yes" and imposterResponse != "no":
+                print("Try again")
+                imposterResponse = input("Do you want to kill? (yes/no)")
+
+            
             if imposterResponse == "yes":
                 playerToKill = input("Who do you want to kill? ")
+
+            
 
                 while True:
                     #check for whether the selected person is a crewmate and they are alive

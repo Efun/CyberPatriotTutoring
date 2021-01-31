@@ -1,0 +1,2 @@
+RR Homework:
+complete the fire(self) function!
