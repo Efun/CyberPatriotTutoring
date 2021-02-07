@@ -1,0 +1,2 @@
+complete the passGun(self, person) function
+    hint: joe is self, bob is person
